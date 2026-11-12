@@ -65,7 +65,7 @@ Rule sets differ by data:
 | Doubling cube | Not in the first phase | Not in the first phase |
 | Match target | 5 | 5 |
 
-The exact rules are in `RULES_BACKGAMMON.md` and `RULES_HAPIS.md`.
+The exact rules are in `RULES.md`.
 
 ## 5. Server
 

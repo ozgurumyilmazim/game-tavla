@@ -7,7 +7,7 @@ These are the ground rules for all code in this repository. They are short on pu
 1. **The server is the authority.** The client shows and suggests; the server decides. Never trust anything that comes from a client.
 2. **The rules engine is pure.** No network, no database, no clock, no randomness inside it.
 3. **Correctness before cleverness.** Tavla rules have many edge cases. Readable code with tests beats short code.
-4. **Rules live in one place.** Game rules are written once, in the shared engine, and described in `RULES_BACKGAMMON.md` and `RULES_HAPIS.md`.
+4. **Rules live in one place.** Game rules are written once, in the shared engine, and described in `RULES.md`.
 5. **Small steps.** Small, reviewable changes that keep the main branch working.
 
 ## 2. Language and tooling
@@ -37,14 +37,14 @@ Dependencies point inward toward `engine`. A lint rule enforces this.
 2. **Dice are injected.** The engine never calls `Math.random`. It receives dice values as input. The server generates them (see section 6).
 3. **Rule sets are data.** Backgammon and Hapis differ by configuration (hit vs. trap, layout, bar, bear-off restriction), not by copy-pasted code paths.
 4. **Total functions.** Illegal input returns a typed error, not an exception.
-5. **Every rule in the rules documents has at least one test**, and every edge case listed there has its own named test.
+5. **Every rule in `RULES.md` has at least one test**, and every edge case listed there has its own named test.
 6. **Property tests** (for example with fast-check) check invariants: checker counts never change except by bearing off, a move sequence never uses more pips than rolled, and so on.
 7. **Determinism.** A game must be exactly reproducible from its starting state and its roll and move history.
 
 ## 5. Naming and structure
 
 - Types and classes: `PascalCase`. Functions and variables: `camelCase`. Constants: `UPPER_SNAKE_CASE`. Files: `kebab-case.ts`.
-- Name things in the domain's language: `point`, `checker`, `bar`, `bearOff`, `trap`, `gate`. Turkish terms (*kapı*, *açık*, *hapis*) are used in comments and the rules docs, and English in code.
+- Name things in the domain's language: `point`, `checker`, `bar`, `bearOff`, `trap`, `gate`. Turkish terms (*kapı*, *açık*, *hapis*) are used in comments and in `RULES.md`, and English in code.
 - One concept per file. Avoid files over about 300 lines.
 - Prefer small, explicit types over booleans and strings: `type Player = 'white' | 'black'`.
 - No default exports.
@@ -73,7 +73,7 @@ Dependencies point inward toward `engine`. A lint rule enforces this.
 ## 8. Testing
 
 - A change that touches rules must come with tests.
-- Engine: very high coverage; every rule and edge case in the rules docs.
+- Engine: very high coverage; every rule and edge case in `RULES.md`.
 - Server: tests for message validation, turn order, reconnection and persistence.
 - Client: component tests for the board; a few end-to-end tests for a full game between two browser sessions.
 - Tests are deterministic: no real clocks, no real randomness, no network.
@@ -87,7 +87,7 @@ All code and documents are versioned in **GitHub**.
 - Work happens on short-lived branches named `type/short-description` (for example `feat/hapis-trapping`, `fix/bearoff-larger-die`).
 - **Conventional Commits** (`feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `chore:`).
 - Pull requests are small and focused, with a clear description of what and why. Link the GitHub issue they close (`Closes #12`).
-- Use GitHub **Issues** for bugs, tasks and rule questions; open rule questions from the rules documents become issues.
+- Use GitHub **Issues** for bugs, tasks and rule questions; open rule questions from `RULES.md` become issues.
 - At least one review before merge. The **Jenkins** build must pass (type check, lint, tests) and is reported on the pull request as a status check.
 - CI runs only the repository's own `pnpm` scripts (`lint`, `typecheck`, `test`, `build`), so a developer can run exactly what CI runs. The `Jenkinsfile` lives in the repository and contains no secrets; credentials are stored in Jenkins and referenced by id.
 - Prefer squash merge, so `main` keeps one clean commit per change.
@@ -96,7 +96,7 @@ All code and documents are versioned in **GitHub**.
 
 ## 10. Documentation
 
-- If you change a rule, update `RULES_BACKGAMMON.md` or `RULES_HAPIS.md` in the same pull request.
+- If you change a rule, update `RULES.md` in the same pull request.
 - If you change a structural decision, update `ARCHITECTURE.md` and the decisions table in `README.md`.
 - Public functions of the engine have short doc comments with an example.
 

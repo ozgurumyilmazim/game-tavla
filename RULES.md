@@ -1,6 +1,6 @@
 # Game Rules: Backgammon (Tavla) and Hapis
 
-This file is the single reference for the rules of both games. It combines what is shared and what differs. The detailed engine specifications are in `RULES_BACKGAMMON.md` and `RULES_HAPIS.md`; if they ever disagree with this file, update all three in the same pull request.
+This file is the single source of truth for the rules of both games, and the specification the engine implements. It covers what is shared and what differs.
 
 Scope: first phase (MVP). Two players, online, turn based. Matches to 5 points. No doubling cube. No solo play.
 

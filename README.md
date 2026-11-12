@@ -41,7 +41,7 @@ Out of scope for the first phase:
 | Version control | GitHub (pull requests, Issues) |
 | Continuous integration | Jenkins (pipeline in a `Jenkinsfile`) |
 
-Open questions are tracked at the end of `RULES_HAPIS.md` and `ARCHITECTURE.md`.
+Open questions are tracked at the end of `RULES.md` and `ARCHITECTURE.md`.
 
 ## Documents
 
@@ -50,11 +50,9 @@ Open questions are tracked at the end of `RULES_HAPIS.md` and `ARCHITECTURE.md`.
 | `README.md` | This file: purpose, scope, decisions |
 | `CODING_RULES.md` | Ground rules for everyone who writes code here |
 | `ARCHITECTURE.md` | Components, repository layout, data flow, protocol sketch |
-| `RULES.md` | One reference for both games: shared rules, differences, terms, edge cases |
-| `RULES_BACKGAMMON.md` | Exact rules of backgammon as the engine must implement them |
-| `RULES_HAPIS.md` | Exact rules of Hapis as the engine must implement them |
+| `RULES.md` | The rules of both games, as the engine must implement them: shared rules, differences, terms, edge cases |
 
-When code and a rules document disagree, the rules document is right until the owner decides otherwise. Fix the code, or change the document in the same pull request.
+When code and `RULES.md` disagree, `RULES.md` is right until the owner decides otherwise. Fix the code, or change the document in the same pull request.
 
 ## Getting started
 
