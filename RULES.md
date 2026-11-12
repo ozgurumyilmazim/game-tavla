@@ -33,6 +33,7 @@ Move all 15 of your checkers into your home quadrant (points 1 to 6), then bear 
 - 24 points. Each player numbers the points from their own side. Your home is points 1 to 6. Your farthest point is your **24-point**.
 - Your 24-point is the same place as your opponent's 1-point.
 - The two players move in opposite directions, from point 24 toward point 1.
+- Checkers always move forward, following a U-shaped track around the board, and never move backward.
 
 ### 2.3 Starting a game
 
@@ -51,8 +52,9 @@ Move all 15 of your checkers into your home quadrant (points 1 to 6), then bear 
 
 ### 2.5 Points and gates
 
-- A point holding two or more checkers of one player is a **gate** (*kapı*). The opponent cannot land on it.
+- A point holding two or more checkers of one player is a **gate** (*kapı*). The opponent cannot land on it. 
 - A lone checker is *açık* (open). What happens when it is landed on depends on the game (hit or trap).
+- There is no limit to the number of checkers on a point; all 15 may stand on one point.
 
 ### 2.6 Bearing off
 
@@ -68,6 +70,8 @@ Move all 15 of your checkers into your home quadrant (points 1 to 6), then bear 
 | Normal win | 1 |
 | Gammon: the loser has borne off no checkers | 2 |
 | Backgammon: see each game below | 3 |
+
+There are no draws: every game has a winner.
 
 ### 2.8 Match
 

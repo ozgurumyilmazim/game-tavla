@@ -41,7 +41,7 @@ A single engine takes a **rule set** (configuration) and works on a **game state
 
 State (summary):
 
-- 24 points, each with an owner and a count of checkers.
+- 24 points, each with an owner and a count of checkers. A point may hold any number of checkers (all 15 can stand on one point).
 - Per player: checkers borne off; for backgammon, checkers on the bar.
 - For Hapis: which checkers are trapped and which checker traps them.
 - Current player, dice for the turn, dice not yet used.
@@ -52,7 +52,7 @@ Main functions:
 1. `newGame(ruleSet)` returns the starting state.
 2. `legalTurns(state, dice)` returns every complete legal sequence of moves for the dice.
 3. `applyMove(state, move)` returns the next state or a typed error.
-4. `gameResult(state)` returns the winner and the points (1, 2 or 3), or nothing if the game continues.
+4. `gameResult(state)` returns the winner and the points (1, 2 or 3), or nothing if the game continues. Every game has a winner; there are no draws.
 
 Rule sets differ by data:
 
