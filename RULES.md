@@ -1,12 +1,26 @@
-# Game Rules: Backgammon (Tavla) and Hapis
+# Game Rules: Backgammon (Tavla) and Hapis / Oyun Kuralları: Backgammon (Tavla) ve Hapis
 
+**EN**
 This file is the single source of truth for the rules of both games, and the specification the engine implements. It covers what is shared and what differs.
+
+**TR**
+Bu dosya, her iki oyun için kuralların tek gerçek kaynağıdır ve motorun uyguladığı spesifikasyonu içerir. Paylaşılan ve farklı olanları kapsar.
+
 
 Scope: first phase (MVP). Two players, online, turn based. Matches to 5 points. No doubling cube. No solo play.
 
 All rules below have been confirmed by the project owner. The only open point is in section 9.
 
-## 1. Summary
+## 1. Summary / 1. Özet
+
+### 1.1 Equipment and Objective
+
+**EN**
+* **Equipment**: A backgammon board with 24 triangular points (hane), a pair of dice, and 30 checkers (15 per player, typically black and white).
+* **Objective**: Move all your checkers into your home board (points 1‑6) and then bear them off. The first player to bear off all 15 checkers wins. A win where the opponent has not borne off any checkers is a **Gammon** (double points).
+
+**Turkish**: Tavla; 24 üçgen haneden (kapıdan) oluşan tahta, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakip hiçbir pul toplamazsa **Mars** (iki puan) kazanılır.
+
 
 | | Backgammon | Hapis |
 | --- | --- | --- |
@@ -22,7 +36,7 @@ All rules below have been confirmed by the project owner. The only open point is
 | Match | First to 5 points | First to 5 points |
 | Doubling cube | Not in the first phase | Not in the first phase |
 
-## 2. Shared rules (both games)
+## 2. Shared rules (both games) / 2. Ortak Kurallar (her iki oyun)
 
 ### 2.1 Goal
 
@@ -79,7 +93,7 @@ There are no draws: every game has a winner.
 - The winner of the previous game starts the next game. There is no opening roll after the first game; the starter simply rolls two dice for the first turn.
 - No doubling cube and no Crawford rule in the first phase.
 
-## 3. Backgammon
+## 3. Backgammon / 3. Backgammon (Türkçe)
 
 ### 3.1 Starting position
 
@@ -215,3 +229,34 @@ Hapis only:
 ## 9. Open questions
 
 - [ ] **Turn time limit (later phase).** There is no time limit in the first phase. Because the game is online, a limit will be needed later: how long per turn, and what happens when it runs out or a player disconnects.
+
+### 1.1 Equipment and Objective
+
+**EN**
+* **Equipment**: A backgammon board with 24 triangular points (hane), a pair of dice, and 30 checkers (15 per player, typically black and white).
+* **Objective**: Move all your checkers into your home board (points 1‑6) and then bear them off. The first player to bear off all 15 checkers wins. A win where the opponent has not borne off any checkers is a **Gammon** (double points).  
+
+**Turkish**: Tavla; 24 üçgen haneden (kapıdan) oluşan tahta, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakip hiçbir pul toplamazsa **Mars** (iki puan) kazanılır.
+
+## 1. Özet / 1. Summary (Türkçe)
+
+**Türkçe:**
+
+* **Ekipman ve Amaç**: 24 üçgen haneden (kapıdan) oluşan tavla tahtası, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakibin hiç pulları toplaması durumu **Mars** (iki puan) olarak adlandırılır.
+
+* **Oyunun Hedefi**: Her iki oyun (Backgammon ve Hapis) için ortak kurallar aşağıdaki tabloda özetlenmiştir.
+
+| | Backgammon | Hapis |
+|---|---|---|
+| Oyuncu Sayısı | 2 | 2 |
+| Pul Sayısı | Her biri 15 | Her biri 15 |
+| Zar Sayısı | 2 | 2 |
+| Başlangıç Düzeni | Klasik: 24‑hane 2 pul, 13‑hane 5 pul, 8‑hane 3 pul, 6‑hane 5 pul | Tüm 15 pul 24‑haneye yerleştirilir |
+| Tek pul üzerine iniş | Vuruş: bar’a gönderilir | Tuzak: yerde sabit kalır |
+| Bar ve yeniden giriş | Var | Yok |
+| Çifte zar (doubles) | 4 kez oynanır | 4 kez oynanır |
+| Puanlama | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, bkz. 4.5) |
+| Maç | İlk 5 puana ulaşan | İlk 5 puana ulaşan |
+| Doubling cube | İlk fazda yok | İlk fazda yok |
+
+---

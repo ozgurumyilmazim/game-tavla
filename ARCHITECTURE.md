@@ -1,11 +1,13 @@
-# Architecture
+# Architecture / Mimari
 
+**EN**
 Status: starting draft for the MVP (web client, two human players, backgammon and Hapis).
+Durum: MVP için taslak aşamasında (web istemcisi, iki insan oyuncu, backgammon ve Hapis).
 
-## 1. Goals
+## 1. Goals / 1. Hedefler
 
 - One rules engine for all games, shared by client and server.
-- Server-authoritative play: dice, validation and results come from the server.
+- Game rules are defined in `RULES.md`, covering equipment, objectives, and detailed mechanics for Backgammon and Hapis.
 - Turn-based online play between two people, with reconnection.
 - Room to add native mobile apps and a third game later without rewriting the rules.
 
