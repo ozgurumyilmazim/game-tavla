@@ -140,7 +140,7 @@ Message names are provisional and will be fixed in the protocol package.
 
 - [ ] Authentication method (email, social login, guest play).
 - [ ] Matchmaking: invite links only, or also random opponents.
-- [ ] Time limits per turn, and what happens when a player disappears.
+- [ ] Turn time limits: none in the first phase (decided), but a limit and handling of disconnected players will be needed later for online play.
 - [ ] Hosting and deployment target.
 - [ ] Jenkins setup: where it runs, build agents (Node.js, pnpm, Playwright browsers), GitHub webhook and status-check integration, who maintains and patches it.
 - [ ] Database confirmation (PostgreSQL).

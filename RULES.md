@@ -4,7 +4,7 @@ This file is the single source of truth for the rules of both games, and the spe
 
 Scope: first phase (MVP). Two players, online, turn based. Matches to 5 points. No doubling cube. No solo play.
 
-Items marked **provisional** were not stated by the project owner and need confirmation (see section 9).
+All rules below have been confirmed by the project owner. The only open point is in section 9.
 
 ## 1. Summary
 
@@ -18,7 +18,7 @@ Items marked **provisional** were not stated by the project owner and need confi
 | Bar and re-entry | Yes | No |
 | Bearing off while a checker is trapped | n/a | Not allowed |
 | Doubles | Played four times | Played four times |
-| Scoring | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, provisional definition) |
+| Scoring | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, see 4.5) |
 | Match | First to 5 points | First to 5 points |
 | Doubling cube | Not in the first phase | Not in the first phase |
 
@@ -36,7 +36,8 @@ Move all 15 of your checkers into your home quadrant (points 1 to 6), then bear 
 
 ### 2.3 Starting a game
 
-Each player rolls one die. The higher die wins and plays the first turn using both dice as rolled. If both dice are equal, they are rolled again. (Hapis: provisional, same as backgammon.)
+- **First game of a match (score 0-0):** each player rolls one die. The higher die starts and plays the first turn using both dice as rolled. If both dice are equal, both players roll again, and keep rolling until the dice differ.
+- **Later games of the match:** the winner of the previous game starts (see 2.8).
 
 ### 2.4 A turn
 
@@ -71,7 +72,7 @@ Each player rolls one die. The higher die wins and plays the first turn using bo
 ### 2.8 Match
 
 - A match is played to **5 points**. The first player to reach 5 or more points wins the match.
-- Who starts the next game: the player who lost the previous game rolls first (provisional).
+- The winner of the previous game starts the next game. There is no opening roll after the first game; the starter simply rolls two dice for the first turn.
 - No doubling cube and no Crawford rule in the first phase.
 
 ## 3. Backgammon
@@ -130,11 +131,12 @@ Trapping is allowed on every point, including points in the opponent's home quad
 
 1. Landing on a lone opposing checker traps it. Your checker sits on top of it on the same point.
 2. A trapped checker cannot move.
-3. It is freed when the checker (or checkers) trapping it has left the point.
-4. While the trap stands, the trapped player cannot land on that point.
-5. A trapping checker cannot itself be trapped. A point holding two or more checkers of one player cannot be trapped.
-6. Nothing is ever removed from the board, so there is no bar and no re-entry.
-7. A player whose every checker is trapped or blocked loses the turn.
+3. **Stacking.** The trapper may be joined by more of its owner's checkers on the same point. The trapped checker stays trapped until **all** of the trapper's checkers have left the point, and is then freed.
+4. **Adding own checkers.** A player may land more of their own checkers on a point where their checker is already trapping an opposing checker.
+5. While the trap stands, the trapped player cannot land on that point.
+6. A trapping checker cannot itself be trapped. A point holding two or more checkers of one player cannot be trapped.
+7. Nothing is ever removed from the board, so there is no bar and no re-entry.
+8. A player whose every checker is trapped or blocked loses the turn.
 
 ### 4.4 Bearing off
 
@@ -142,7 +144,7 @@ Same as 2.6, with one extra condition: **a player with a checker still trapped c
 
 ### 4.5 Backgammon (3 points)
 
-Provisional: the loser has borne off no checkers and still has a checker in the winner's home quadrant, or a trapped checker.
+The loser has borne off no checkers and still has a checker in the winner's home quadrant, or a trapped checker.
 
 ## 5. Terms
 
@@ -176,35 +178,36 @@ Common to both games:
 2. Only one die playable: the larger must be chosen.
 3. Playing both dice with one checker where the middle point is blocked.
 4. Bearing off with a die larger than the highest occupied point.
-5. Opening roll with equal dice is rolled again.
+5. Opening roll: equal dice are rolled again, repeatedly, until they differ.
 6. Gammon detection at game end.
+7. After the first game, the previous winner starts, with no opening roll.
 
 Backgammon only:
 
-7. A checker on the bar and every entry point blocked: turn lost.
-8. A hit during bear-off sends the checker back and stops bearing off.
-9. Backgammon (3-point) detection.
+8. A checker on the bar and every entry point blocked: turn lost.
+9. A hit during bear-off sends the checker back and stops bearing off.
+10. Backgammon (3-point) detection with a checker on the bar or in the winner's home.
 
 Hapis only:
 
-10. Landing on a lone opposing checker traps it; it cannot move.
-11. A trapped checker is freed when the trapper leaves.
-12. No counter-trapping.
-13. Bearing off refused while any of your checkers is trapped.
-14. Turn lost when every checker is trapped or blocked.
-15. Trapping on the opponent's home points is legal.
+11. Landing on a lone opposing checker traps it; it cannot move.
+12. A trapped checker is freed when the trapper leaves.
+13. Two or more of the trapper's checkers on the point: the trapped checker stays trapped until all have left.
+14. Adding more of your own checkers to a trapping point is legal.
+15. No counter-trapping.
+16. Bearing off refused while any of your checkers is trapped.
+17. Turn lost when every checker is trapped or blocked.
+18. Trapping on the opponent's home points is legal.
+19. Backgammon (3-point) detection with a checker in the winner's home quadrant, and with a trapped checker.
 
 ## 8. Not in the first phase
 
 - Doubling cube and Crawford rule.
 - Solo play against a bot.
 - Option to ban trapping in the opponent's home (possible later).
+- Time limit per turn.
 - Third game.
 
 ## 9. Open questions
 
-- [ ] **Hapis, stacking on a trapping point.** If a second checker of the trapper lands on the same point, the trapped checker stays trapped until all trapper checkers have left (proposed).
-- [ ] **Hapis, adding own checkers to a trapping point.** Confirm that this is allowed.
-- [ ] **Hapis, backgammon (3-point) definition,** since there is no bar.
-- [ ] **Who starts the next game of a match:** the previous loser (provisional) or a new roll for both.
-- [ ] **Time limit per turn** and what happens when it runs out.
+- [ ] **Turn time limit (later phase).** There is no time limit in the first phase. Because the game is online, a limit will be needed later: how long per turn, and what happens when it runs out or a player disconnects.
