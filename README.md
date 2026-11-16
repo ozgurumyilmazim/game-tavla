@@ -18,6 +18,7 @@ In scope:
 - Matches played to 5 points, for both games.
 - Gammon and backgammon scoring.
 - Server-side dice and server-side move validation.
+- In-game text and audio chat between the two players (added after the first scope; see `PLAN.md`, M5b).
 
 Out of scope for the first phase:
 
@@ -50,6 +51,7 @@ Open questions are tracked at the end of `RULES.md` and `ARCHITECTURE.md`.
 | `README.md` | This file: purpose, scope, decisions |
 | `CODING_RULES.md` | Ground rules for everyone who writes code here |
 | `ARCHITECTURE.md` | Components, repository layout, data flow, protocol sketch |
+| `PLAN.md` | Go-live plan: milestones, environments, launch gates, risks, open questions |
 | `RULES.md` | The rules of both games, as the engine must implement them: shared rules, differences, terms, edge cases |
 
 When code and `RULES.md` disagree, `RULES.md` is right until the owner decides otherwise. Fix the code, or change the document in the same pull request.

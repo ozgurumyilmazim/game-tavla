@@ -25,7 +25,7 @@ Do not assume scripts like `pnpm lint`, `pnpm test`, `pnpm build` work until the
 
 ## Documents are the source of truth
 
-- `RULES_BACKGAMMON.md` and `RULES_HAPIS.md` are referenced by the other documents but **do not exist yet**. If you write rules code, the corresponding rules document must exist first, or be written in the same change.
+- `RULES.md` holds the rules of both games and is the specification the engine implements. `PLAN.md` holds the go-live plan and milestones.
 - When code and a rules document disagree, **the rules document wins** until the owner decides otherwise. Fix the code, or change the document in the same pull request.
 - Changing a rule means updating the matching rules document in the same change.
 - Changing a structural decision means updating `ARCHITECTURE.md` **and** the decisions table in `README.md`.
