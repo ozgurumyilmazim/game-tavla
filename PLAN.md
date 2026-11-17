@@ -112,13 +112,13 @@ Done when: the same simulation harness passes for both rule sets. A native Turki
 
 Proposed design, to be confirmed (section 9):
 
-- Text chat: messages travel over the existing WebSocket, validated by zod, length-limited and rate-limited. Stored with the game only if the owner wants it for disputes.
+- Text chat: messages travel over the existing WebSocket, validated by zod, length-limited and rate-limited. Stored for 30 days (decided) to handle reports and disputes, then deleted by a scheduled job. The privacy notice must say so.
 - Audio: browser WebRTC, one peer-to-peer call between the two players of a game. The server only relays signalling over the WebSocket. Audio is not recorded and does not pass through the application server.
 - TURN relay: players behind strict NATs cannot connect directly, so the server needs a TURN service (coturn in Docker) with its own UDP port range, TLS, and short-lived credentials issued per game. This is the main new infrastructure item.
 - Controls for players: mic off by default and push-to-talk or mute, mute the opponent, block, and report. Opt-in microphone permission is requested only when the player starts a call.
 - Moderation: reports go to a queue the owner reads; chat is limited to the two players of a game, so there is no public channel.
 - Works on phones (iOS Safari and Android Chrome). This needs real-device testing and is the largest risk in this milestone.
-- Privacy: audio is not stored; text retention and the privacy notice must say so (KVKK).
+- Privacy: audio is not stored; text messages are kept 30 days (decided) and the privacy notice must say so (KVKK).
 - Accessibility and i18n: chat strings in TR and EN; text chat has a non-audio alternative at all times.
 
 Done when: two players on different networks (one behind mobile data) can chat and talk during a game, and a muted or blocked opponent is silent and unseen.
@@ -251,14 +251,13 @@ Answered (recorded in section 1):
 | 5 | Abandoned games | Inactive player loses after 2 minutes; counts as 1 point |
 | 8 | Legal review (KVKK) | Owner will check with their lawyer |
 | 9 | Product name | TAVLA |
-| 10 | In-game chat | Yes, text and audio. Audio is a call between the two players of a game only, with mute, block and report. Ships behind a flag (decided). |
+| 10 | In-game chat | Yes, text and audio. Text messages kept 30 days. Audio is a call between the two players of a game only, with mute, block and report. Ships behind a flag (decided). |
 
 Open:
 
 | # | Question | Needed by |
 | --- | --- | --- |
 | O1 | Which domain name (for example tavla.example.com) and is the machine reachable from the internet on ports 80, 443 and a UDP range for TURN? | M7 |
-| O3 | Text chat retention: my working assumption is to keep messages 30 days only to handle reports, then delete them. The owner said the audio scope is fine but did not answer this part; confirm, and tell the lawyer. | M5b |
 | 6 | Expected beta size and launch-week concurrent games, to size the machine | M8 |
 | 7 | Who reviews the Hapis rules and who is in the beta? | M2 |
 | O5 | Is there an image registry available to Jenkins, and how does Jenkins reach the server (SSH from Jenkins)? | M0 |
@@ -266,6 +265,6 @@ Open:
 
 ## 10. Next actions
 
-1. Owner confirms the text chat retention assumption (O3); the rest can follow.
+1. Owner answers the remaining open questions (O1, O5, O6, beta size, Hapis reviewer); none block M0.
 2. Developer starts M0 on a `chore/workspace-setup` branch, as one small pull request per area (workspace, lint/format, CI scripts, GitHub settings).
 3. Record the decisions from section 1 in `README.md` and `ARCHITECTURE.md` once approved.
