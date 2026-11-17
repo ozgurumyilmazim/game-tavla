@@ -56,4 +56,15 @@ When code and `RULES.md` disagree, `RULES.md` is right until the owner decides o
 
 ## Getting started
 
-To be filled in once the repository is created (install, run, test commands).
+Requirements: Node.js 26 (see `.nvmrc`) and pnpm 12 (`npm install -g pnpm@12.21.0`).
+
+```bash
+pnpm install
+pnpm lint          # ESLint, including the import-boundary rules
+pnpm format:check  # Prettier (use `pnpm format` to fix)
+pnpm typecheck     # tsc, strict mode, every package
+pnpm test          # Vitest
+pnpm build
+```
+
+Jenkins runs exactly these scripts. There is no runnable app yet; see `PLAN.md` for the milestones.

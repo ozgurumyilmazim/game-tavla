@@ -10,7 +10,7 @@ Full context: `README.md` (purpose, scope, decisions), `ARCHITECTURE.md` (compon
 
 ## Current state
 
-The repository is **documents only**. No `package.json`, no `pnpm-workspace.yaml`, no source code exists yet. The layout described in `ARCHITECTURE.md` is the plan, not yet on disk:
+The workspace is set up (pnpm, strict TypeScript, ESLint with import-boundary rules, Prettier, Vitest) but the packages are stubs: the engine holds only the `Player` type and `opponent()`. Game rules are not implemented yet; see `PLAN.md` for milestones.
 
 ```
 /packages
@@ -21,7 +21,7 @@ The repository is **documents only**. No `package.json`, no `pnpm-workspace.yaml
   /client      React web client
 ```
 
-Do not assume scripts like `pnpm lint`, `pnpm test`, `pnpm build` work until the workspace is set up. The `Jenkinsfile` calls them and will fail until then.
+Root scripts that work: `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm test`, `pnpm build`. Run them before you finish.
 
 ## Documents are the source of truth
 

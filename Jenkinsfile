@@ -19,7 +19,7 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'corepack enable'
+        sh 'npm install -g pnpm@12.21.0'
         sh 'pnpm install --frozen-lockfile'
       }
     }
@@ -27,6 +27,7 @@ pipeline {
     stage('Lint') {
       steps {
         sh 'pnpm lint'
+        sh 'pnpm format:check'
       }
     }
 
