@@ -10,7 +10,7 @@ Scope: the first phase (MVP) described in `README.md`, taken from an empty repos
 | Hosting | Owner's own Linux server with Docker Compose | Not a cloud provider. The owner runs the machine and controls DNS. |
 | Jenkins | Owner's existing Jenkins, owner maintains it | Runs in the owner's environment. |
 | Product name | TAVLA | Public site and UI brand. |
-| Inactivity | Inactive player loses the current game | Phase 1 rule. The time limit is still open (section 9). |
+| Inactivity | Inactive player loses the current game after 2 minutes without a move or connection | Phase 1 rule, set by the owner. The forfeit counts as 1 point. Revisit with real timers in a later phase. |
 | Player data | No email stored | Google subject id and display name only. |
 | In-game chat | Text and audio | Added by the owner; see M5b. Audio ships behind a feature flag and may follow the beta start (decided). Text chat is required for Gate A. |
 | Reverse proxy and TLS | Caddy | Automatic HTTPS, WebSocket proxying. Needs ports 80/443 reachable and a DNS record. |
@@ -248,18 +248,17 @@ Answered (recorded in section 1):
 | 2 | VM provider, region, budget | Owner's own Linux machine with Docker Compose; no provider |
 | 3 | Domain and DNS | Owner controls DNS (domain name itself still to be told, see O1) |
 | 4 | Player email needed? | No, Google subject id and display name only |
-| 5 | Abandoned games | Inactive player loses the current game (period still open, see O2) |
+| 5 | Abandoned games | Inactive player loses after 2 minutes; counts as 1 point |
 | 8 | Legal review (KVKK) | Owner will check with their lawyer |
 | 9 | Product name | TAVLA |
-| 10 | In-game chat | Yes, text and audio (design to confirm, see O3). Audio ships behind a flag (decided). |
+| 10 | In-game chat | Yes, text and audio. Audio is a call between the two players of a game only, with mute, block and report. Ships behind a flag (decided). |
 
 Open:
 
 | # | Question | Needed by |
 | --- | --- | --- |
 | O1 | Which domain name (for example tavla.example.com) and is the machine reachable from the internet on ports 80, 443 and a UDP range for TURN? | M7 |
-| O2 | After how long without a move or connection does a player lose the game? Does the forfeit count as 1 point? | M4 |
-| O3 | Audio scope: only a call between the two players of a game, with mute, block and report? Is text chat stored (for disputes) or discarded? | M5b |
+| O3 | Text chat retention: my working assumption is to keep messages 30 days only to handle reports, then delete them. The owner said the audio scope is fine but did not answer this part; confirm, and tell the lawyer. | M5b |
 | 6 | Expected beta size and launch-week concurrent games, to size the machine | M8 |
 | 7 | Who reviews the Hapis rules and who is in the beta? | M2 |
 | O5 | Is there an image registry available to Jenkins, and how does Jenkins reach the server (SSH from Jenkins)? | M0 |
@@ -267,6 +266,6 @@ Open:
 
 ## 10. Next actions
 
-1. Owner answers O2 and O3 (they shape M4 and M5b); the rest can follow.
+1. Owner confirms the text chat retention assumption (O3); the rest can follow.
 2. Developer starts M0 on a `chore/workspace-setup` branch, as one small pull request per area (workspace, lint/format, CI scripts, GitHub settings).
 3. Record the decisions from section 1 in `README.md` and `ARCHITECTURE.md` once approved.
