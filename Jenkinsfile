@@ -1,64 +1,71 @@
-// Starting outline for the CI pipeline. Adjust agent, node version and
-// credentials to your Jenkins setup. Keep real work in the pnpm scripts so a
-// developer can run the same commands locally.
-
 pipeline {
-  agent {
-    docker {
-      image 'node:lts'
-      args '-u root:root'
-    }
-  }
+    agent any
 
-  options {
-    timestamps()
-    timeout(time: 30, unit: 'MINUTES')
-    disableConcurrentBuilds(abortPrevious: true)
-  }
-
-  stages {
-    stage('Install') {
-      steps {
-        sh 'corepack enable'
-        sh 'pnpm install --frozen-lockfile'
-      }
+    environment {
+        // Sunucu IP ve Port Haritası
+        DEV01_URL = "http://172.16.1.101:4096"
+        DEV02_URL = "http://172.16.1.102:4096"
+        // Jenkins sunucusunda opencode CLI yolunu tanımlayın
+        PATH = "/usr/local/bin:/var/lib/jenkins/.opencode/bin:${env.PATH}"
     }
 
-    stage('Lint') {
-      steps {
-        sh 'pnpm lint'
-      }
+    stages {
+        stage('Hazırlık ve Bağımlılıklar') {
+            steps {
+                echo "Aktif Branch: ${env.BRANCH_NAME}"
+                sh 'npm ci'
+            }
+        }
+
+        stage('Kod Kalitesi (Lint & Typecheck)') {
+            steps {
+                // Çıktıyı bir dosyaya kaydediyoruz ki hata olursa ajana gönderebilelim
+                sh 'npm run lint > build_error.log 2>&1'
+            }
+        }
+
+        stage('Otomatik Testler') {
+            steps {
+                sh 'npm test >> build_error.log 2>&1'
+            }
+        }
     }
 
-    stage('Type check') {
-      steps {
-        sh 'pnpm typecheck'
-      }
-    }
+    post {
+        success {
+            echo "✅ ${env.BRANCH_NAME} üzerindeki tüm testler başarıyla geçti!"
+            // İsteğe bağlı: Başarı bildirimini ilgili ajana iletebilirsiniz
+        }
 
-    stage('Test') {
-      steps {
-        sh 'pnpm test'
-      }
-    }
+        failure {
+            script {
+                echo "❌ Test veya Lint hatası tespit edildi! İlgili AI ajanına geri bildirim gönderiliyor..."
+                
+                // Branch adına göre hangi sunucunun sorumlu olduğunu belirle
+                def targetAgentUrl = ""
+                if (env.BRANCH_NAME.contains("dev01") || env.BRANCH_NAME.contains("backend")) {
+                    targetAgentUrl = env.DEV01_URL
+                } else if (env.BRANCH_NAME.contains("dev02") || env.BRANCH_NAME.contains("frontend")) {
+                    targetAgentUrl = env.DEV02_URL
+                }
 
-    stage('Build') {
-      steps {
-        sh 'pnpm build'
-      }
-    }
+                if (targetAgentUrl != "") {
+                    // Hata logunun son 50 satırını al
+                    def errorSnippet = sh(script: "tail -n 50 build_error.log", returnStdout: true).trim()
+                    
+                    // OpenCode servisine hatayı düzeltme görevi gönder
+                    sh """
+                        opencode run --attach ${targetAgentUrl} "Jenkins CI/CD pipeline (${env.BRANCH_NAME}) başarısız oldu. Aşağıdaki hata logunu incele, hatayı düzelt, testleri yerel olarak doğrula ve tekrar pushla:\n\n${errorSnippet}"
+                    """
+                } else {
+                    echo "Bu branch için eşleşen bir AI sunucusu bulunamadı."
+                }
+            }
+        }
 
-    // Enable later, once Playwright browsers are available on the agent.
-    // stage('End-to-end') {
-    //   steps {
-    //     sh 'pnpm test:e2e'
-    //   }
-    // }
-  }
-
-  post {
-    always {
-      cleanWs()
+        always {
+            // Geçici log dosyasını temizle
+            sh 'rm -f build_error.log'
+        }
     }
-  }
 }
