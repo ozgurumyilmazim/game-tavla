@@ -1,40 +1,43 @@
 # Game Rules: Backgammon (Tavla) and Hapis / Oyun Kuralları: Backgammon (Tavla) ve Hapis
 
 **EN**
-This file is the single source of truth for the rules of both games, and the specification the engine implements. It covers what is shared and what differs.
+This file is the single source of truth for the rules of both games, and the specification the engine must implement. It covers what is shared and what differs.
 
 **TR**
-Bu dosya, her iki oyun için kuralların tek gerçek kaynağıdır ve motorun uyguladığı spesifikasyonu içerir. Paylaşılan ve farklı olanları kapsar.
+Bu dosya, her iki oyun için kuralların tek gerçek kaynağıdır ve motorun uygulaması gereken spesifikasyonu içerir. Paylaşılan ve farklı olanları kapsar.
 
 
 Scope: first phase (MVP). Two players, online, turn based. Matches to 5 points. No doubling cube. No solo play.
 
-All rules below have been confirmed by the project owner. The only open point is in section 9.
+All rules below have been confirmed by the project owner. The only open point is in section 10.
 
 ## 1. Summary / 1. Özet
 
-### 1.1 Equipment and Objective
+### 1.1 Equipment and Objective / 1.1 Ekipman ve Amaç
 
 **EN**
-* **Equipment**: A backgammon board with 24 triangular points (hane), a pair of dice, and 30 checkers (15 per player, typically black and white).
-* **Objective**: Move all your checkers into your home board (points 1‑6) and then bear them off. The first player to bear off all 15 checkers wins. A win where the opponent has not borne off any checkers is a **Gammon** (double points).
+- **Equipment**: A backgammon board with 24 triangular points (hane), a pair of dice, and 30 checkers (15 per player, typically black and white).
+- **Objective**: Move all your checkers into your home board (points 1-6) and then bear them off. The first player to bear off all 15 checkers wins. A win where the opponent has borne off no checkers is a **Gammon** (double points).
 
-**Turkish**: Tavla; 24 üçgen haneden (kapıdan) oluşan tahta, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakip hiçbir pul toplamazsa **Mars** (iki puan) kazanılır.
+**TR**
+- **Ekipman**: 24 üçgen haneden (kapıdan) oluşan tavla tahtası, iki zar ve iki oyuncuya ait 30 pul.
+- **Amaç**: Tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakip hiç pul toplamazsa **Mars** (iki puan) kazanılır.
 
+### 1.2 Game comparison / 1.2 Oyun karşılaştırması
 
 | | Backgammon | Hapis |
 | --- | --- | --- |
-| Players | 2 | 2 |
-| Checkers | 15 each | 15 each |
-| Dice | 2 | 2 |
-| Start position | Classic: 2 on the 24-point, 5 on the 13-point, 3 on the 8-point, 5 on the 6-point | All 15 on your own 24-point |
-| Landing on a lone opposing checker | Hit: sent to the bar | Trap: frozen in place |
-| Bar and re-entry | Yes | No |
-| Bearing off while a checker is trapped | n/a | Not allowed |
-| Doubles | Played four times | Played four times |
-| Scoring | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, see 4.5) |
-| Match | First to 5 points | First to 5 points |
-| Doubling cube | Not in the first phase | Not in the first phase |
+| Players / Oyuncu sayısı | 2 | 2 |
+| Checkers / Pul sayısı | 15 each / 15 pul | 15 each / 15 pul |
+| Dice / Zar sayısı | 2 | 2 |
+| Start position / Başlangıç düzeni | Classic: 2 on the 24-point, 5 on the 13-point, 3 on the 8-point, 5 on the 6-point / Klasik: 24-hane 2 pul, 13-hane 5 pul, 8-hane 3 pul, 6-hane 5 pul | All 15 on your own 24-point / Tüm 15 pul kendi 24-hanesinde |
+| Landing on a lone opposing checker / Tek rakip puluna iniş | Hit: sent to the bar / Vuruş: bar'a gönderilir | Trap: frozen in place / Tuzak: yerde sabit kalır |
+| Bar and re-entry / Bar ve yeniden giriş | Yes / Var | No / Yok |
+| Bearing off while a checker is trapped / Hapisli pul varken toplama | n/a | Not allowed / İzin verilmez |
+| Doubles / Çifte zar | Played four times / Dört kez oynanır | Played four times / Dört kez oynanır |
+| Scoring / Puanlama | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, bakınız 4.5) |
+| Match / Maç | First to 5 points / İlk 5 puana ulaşan | First to 5 points / İlk 5 puana ulaşan |
+| Doubling cube / Katlama kübü | Not in the first phase / İlk fazda yok | Not in the first phase / İlk fazda yok |
 
 ## 2. Shared rules (both games) / 2. Ortak Kurallar (her iki oyun)
 
@@ -66,7 +69,7 @@ Move all 15 of your checkers into your home quadrant (points 1 to 6), then bear 
 
 ### 2.5 Points and gates
 
-- A point holding two or more checkers of one player is a **gate** (*kapı*). The opponent cannot land on it. 
+- A point holding two or more checkers of one player is a **gate** (*kapı*). The opponent cannot land on it.
 - A lone checker is *açık* (open). What happens when it is landed on depends on the game (hit or trap).
 - There is no limit to the number of checkers on a point; all 15 may stand on one point.
 
@@ -188,6 +191,8 @@ The loser has borne off no checkers and still has a checker in the winner's home
 6. Bear-off conditions and the higher-point rule.
 7. Correct scoring (1, 2 or 3) and match end at 5 points.
 
+Current implementation status for these items is in section 9.
+
 ## 7. Edge cases to test
 
 Common to both games:
@@ -226,37 +231,23 @@ Hapis only:
 - Time limit per turn.
 - Third game.
 
-## 9. Open questions
-
-- [ ] **Turn time limit (later phase).** There is no time limit in the first phase. Because the game is online, a limit will be needed later: how long per turn, and what happens when it runs out or a player disconnects.
-
-### 1.1 Equipment and Objective
+## 9. Implementation status / 9. Gerçekleme durumu
 
 **EN**
-* **Equipment**: A backgammon board with 24 triangular points (hane), a pair of dice, and 30 checkers (15 per player, typically black and white).
-* **Objective**: Move all your checkers into your home board (points 1‑6) and then bear them off. The first player to bear off all 15 checkers wins. A win where the opponent has not borne off any checkers is a **Gammon** (double points).  
+This section records what exists in code today; it does not change the rules above. Source paths below refer to the workspace snapshot `origin/chore/workspace-setup:`; this branch contains documents only.
 
-**Turkish**: Tavla; 24 üçgen haneden (kapıdan) oluşan tahta, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakip hiçbir pul toplamazsa **Mars** (iki puan) kazanılır.
+**TR**
+Bu bölüm, kodda bugün ne olduğunu kaydeder; yukarıdaki kuralları değiştirmez. Aşağıdaki kaynak yolları `origin/chore/workspace-setup:` anlık görüntüsüne aittir; bu branch yalnızca belge içerir.
 
-## 1. Özet / 1. Summary (Türkçe)
+| Rule area / Kural alanı | Status / Durum | Source / Kaynak |
+| --- | --- | --- |
+| Player sides and `opponent()` | Implemented / Gerçeklendi | `packages/engine/src/player.ts:1-11`; exported in `packages/engine/src/index.ts:1-2`; tested in `packages/engine/src/player.test.ts:4-12` |
+| Board, points, gates, bar and traps (2.2, 2.5, 3.3, 4.3) | Not implemented / Gerçeklenmedi | `packages/engine/src/index.ts:1-2` exports only `Player` and `opponent`; no `GameState` or `RuleSet` |
+| Opening roll, injected dice, doubles and must-play rules (2.3, 2.4) | Not implemented / Gerçeklenmedi | `apps/server/src/index.ts:1` and `packages/protocol/src/index.ts:1` are empty; no `rollDice` handling |
+| Legal landing, hits, traps and bear-off (2.6, 3.2-3.4, 4.2-4.4) | Not implemented / Gerçeklenmedi | `packages/engine/src/index.ts:1-2`; no `applyMove` or `legalTurns` |
+| Scoring, gammon/backgammon and match to 5 (2.7, 2.8, 3.5, 4.5) | Not implemented / Gerçeklenmedi | `packages/engine/src/index.ts:1-2`; `gameResult` is planned in `ARCHITECTURE.md:57` |
+| Server-side validation, persistence and client flow | Not implemented / Gerçeklenmedi | `apps/server/src/index.ts:1`, `apps/client/src/index.ts:1` are empty |
 
-**Türkçe:**
+## 10. Open questions / 10. Açık sorular
 
-* **Ekipman ve Amaç**: 24 üçgen haneden (kapıdan) oluşan tavla tahtası, iki zar ve iki oyuncuya ait 30 pul. Amaç tüm pulları kendi iç sahasına (kalesine) getirip tahtadan toplamaktır. Rakibin hiç pulları toplaması durumu **Mars** (iki puan) olarak adlandırılır.
-
-* **Oyunun Hedefi**: Her iki oyun (Backgammon ve Hapis) için ortak kurallar aşağıdaki tabloda özetlenmiştir.
-
-| | Backgammon | Hapis |
-|---|---|---|
-| Oyuncu Sayısı | 2 | 2 |
-| Pul Sayısı | Her biri 15 | Her biri 15 |
-| Zar Sayısı | 2 | 2 |
-| Başlangıç Düzeni | Klasik: 24‑hane 2 pul, 13‑hane 5 pul, 8‑hane 3 pul, 6‑hane 5 pul | Tüm 15 pul 24‑haneye yerleştirilir |
-| Tek pul üzerine iniş | Vuruş: bar’a gönderilir | Tuzak: yerde sabit kalır |
-| Bar ve yeniden giriş | Var | Yok |
-| Çifte zar (doubles) | 4 kez oynanır | 4 kez oynanır |
-| Puanlama | 1 / 2 (gammon) / 3 (backgammon) | 1 / 2 (gammon) / 3 (backgammon, bkz. 4.5) |
-| Maç | İlk 5 puana ulaşan | İlk 5 puana ulaşan |
-| Doubling cube | İlk fazda yok | İlk fazda yok |
-
----
+- [ ] **Turn time limit (later phase).** There is no time limit in the first phase. Because the game is online, a limit will be needed later: how long per turn, and what happens when it runs out or a player disconnects.

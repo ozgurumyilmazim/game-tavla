@@ -10,7 +10,7 @@ Full context: `README.md` (purpose, scope, decisions), `ARCHITECTURE.md` (compon
 
 ## Current state
 
-The repository is **documents only**. No `package.json`, no `pnpm-workspace.yaml`, no source code exists yet. The layout described in `ARCHITECTURE.md` is the plan, not yet on disk:
+This branch is **documents only**: no `package.json`, no `pnpm-workspace.yaml`, no source code. The workspace snapshot on `origin/chore/workspace-setup` has the layout below, but its packages are stubs: only `Player` and `opponent()` exist (`packages/engine/src/player.ts:1-11`). See `RULES.md` section 9 for the rule-by-rule implementation status.
 
 ```
 /packages
@@ -21,13 +21,13 @@ The repository is **documents only**. No `package.json`, no `pnpm-workspace.yaml
   /client      React web client
 ```
 
-Do not assume scripts like `pnpm lint`, `pnpm test`, `pnpm build` work until the workspace is set up. The `Jenkinsfile` calls them and will fail until then.
+On this branch, do not assume scripts like `pnpm lint`, `pnpm test`, `pnpm build` work; the `Jenkinsfile` calls them. They work only on the workspace branch where the tooling exists.
 
 ## Documents are the source of truth
 
-- `RULES_BACKGAMMON.md` and `RULES_HAPIS.md` are referenced by the other documents but **do not exist yet**. If you write rules code, the corresponding rules document must exist first, or be written in the same change.
+- `RULES.md` is the single rule document for both games (`README.md:53`, `ARCHITECTURE.md:70`). The older references to `RULES_BACKGAMMON.md` and `RULES_HAPIS.md` are stale; those files do not exist and must not be recreated.
 - When code and a rules document disagree, **the rules document wins** until the owner decides otherwise. Fix the code, or change the document in the same pull request.
-- Changing a rule means updating the matching rules document in the same change.
+- Changing a rule means updating `RULES.md` in the same change; when the code changes, update its implementation-status table (section 9) too.
 - Changing a structural decision means updating `ARCHITECTURE.md` **and** the decisions table in `README.md`.
 
 ## Non-negotiable rules

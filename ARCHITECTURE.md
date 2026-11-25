@@ -67,7 +67,7 @@ Rule sets differ by data:
 | Doubling cube | Not in the first phase | Not in the first phase |
 | Match target | 5 | 5 |
 
-The exact rules are in `RULES.md`.
+The exact rules are in `RULES.md`. Which of the functions above exist today is recorded in `RULES.md` section 9: in the workspace snapshot on `origin/chore/workspace-setup` only `Player` and `opponent()` are implemented (`packages/engine/src/player.ts:1-11`, `packages/engine/src/index.ts:1-2`); `newGame`, `legalTurns`, `applyMove` and `gameResult` are still planned.
 
 ## 5. Server
 

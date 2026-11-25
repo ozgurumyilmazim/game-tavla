@@ -50,9 +50,11 @@ Open questions are tracked at the end of `RULES.md` and `ARCHITECTURE.md`.
 | `README.md` | This file: purpose, scope, decisions |
 | `CODING_RULES.md` | Ground rules for everyone who writes code here |
 | `ARCHITECTURE.md` | Components, repository layout, data flow, protocol sketch |
-| `RULES.md` | The rules of both games, as the engine must implement them: shared rules, differences, terms, edge cases |
+| `RULES.md` | The rules of both games, as the engine must implement them: shared rules, differences, terms, edge cases, and implementation status with source references (section 9) |
 
 When code and `RULES.md` disagree, `RULES.md` is right until the owner decides otherwise. Fix the code, or change the document in the same pull request.
+
+The implementation-status table in `RULES.md` section 9 records what code exists today; it does not override the rules above it.
 
 ## Getting started
 
